@@ -35,8 +35,8 @@
   align-items: center;
 }
 .QuoteBox__container {
-  max-width: 600px;
-  min-width: 600px;
+  max-width: 60vw;
+  min-width: 40vw;
   min-height: 20vh;
   max-height: max-content;
 }
