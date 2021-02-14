@@ -30,5 +30,27 @@
 .app__container {
   height: 100vh;
   width: 100vw;
-  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.QuoteBox__container {
+  max-width: 50%;
+  min-width: 50%;
+  min-height: 20vh;
+  max-height: max-content;
+}
+.QuoteBox__container__card {
+  height: 100%;
+  width: 100%;
+  padding: 40px;
+  /* position: relative; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.QuoteBox__container__card div:last-child {
+  display: flex;
+  justify-content: space-between;
 }
