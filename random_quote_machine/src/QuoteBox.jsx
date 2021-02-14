@@ -4,13 +4,14 @@ import FormatQuoteRoundedIcon from '@material-ui/icons/FormatQuoteRounded';
 
 const QuoteBox = (props) => {
     const getRandomQuote=()=>{
-        console.log('randomQoute')
+        // call the parent method
+        props.generateRandomQuote();
     }
-    const {quote, data, randomColor} = props;
+    const {quote, randomColor} = props;
     return (
         <div className='QuoteBox__container'>
             <Card className='QuoteBox__container__card'>
-                <div>
+                <div style={{transition:'all 1s'}}>
                     <Typography
                         component='h2'
                         variant='h5'
@@ -30,10 +31,12 @@ const QuoteBox = (props) => {
                 <div>
                     <Avatar
                         variant='rounded'
+                        onClick={()=>window.open(`https://twitter.com/intent/tweet`)}
                         style={{
                             display: 'flex',
                             background: `#${randomColor}`,
-                            justifyContent: 'center'
+                            justifyContent: 'center',
+                            cursor:'pointer'
                         }}>
                         <TwitterIcon />
                     </Avatar>
@@ -48,6 +51,9 @@ const QuoteBox = (props) => {
                     </Button>
                 </div>
             </Card>
+            <div style={{textAlign:'center',color:'#fff', marginTop:20, fontWeight:400}}>
+                by Srikanth<span style={{color:'red', fontWeight:'bold'}}>4c</span>
+            </div>
         </div>
     )
 }
