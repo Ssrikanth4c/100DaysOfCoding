@@ -1,6 +1,6 @@
 .watchCointainer {
   border: 1px solid #999;
-  height: 250px;
+  height: 200px;
   width: 550px;
   border-radius: 10px;
   position: relative;
@@ -14,7 +14,13 @@
 .watchCointainer__headers__stopwatch {
   cursor: pointer;
 }
-
+.watchCointainer__View {
+  height: 104px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding-left: 10px;
+}
 .watchCointainer__footer {
   position: absolute;
   bottom: 0;
