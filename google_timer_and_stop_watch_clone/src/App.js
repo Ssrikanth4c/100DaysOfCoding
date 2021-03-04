@@ -16,6 +16,31 @@ function App() {
     const [isStopwatchView, setIsStopwatch] = useState(false);
     const [isMouseHoverOnTimer, setIsMouseHoverOnTimer] = useState(false);
     const [isMouseHoverOnStopwatch, setIsMouseHoverOnStopwatch] = useState(false);
+    const [isTimerStarted, setIsTimerStarted]= useState(false);
+    const [isStopwatchStarted, setIsStopwatchStarted]= useState(false);
+    const [isStopwatchReset, setIsStopwatchReset]= useState(false);
+    const handleStartStop=()=>{
+        if(isTimerView){
+
+            setIsTimerStarted(!isTimerStarted);
+        }
+        else{
+            
+            setIsStopwatchStarted(!isStopwatchStarted)
+            setIsStopwatchReset(false);
+        }
+    }
+    const handleReset=()=>{
+        if(isTimerView){
+            console.log('reset timer') //reset timer
+        }else{
+            // console.log('reset stopwatch'); // reset stopwatch
+            setIsStopwatchReset(true);
+            setIsStopwatchStarted(false)
+        }
+        
+        
+    }
     return (
         <div
             style={{
@@ -31,15 +56,15 @@ function App() {
                     className="watchCointainer__headers"
                     container="container"
                     alignItems="center"
-                    justify="space-around">
+                    justify="space-between">
                     {/* timer */}
                     <Grid
                         className="watchCointainer__headers__timer"
                         item="item"
-                        xs={12}
                         sm={6}
                         style={{
                             fontSize: 13,
+                           
                             color: isTimerView
                                 ? '#1a73e8'
                                 : isMouseHoverOnTimer
@@ -47,6 +72,7 @@ function App() {
                                     : '#6b6a6a',
                             fontWeight: 300,
                             padding: 14,
+                            flex:1,
                             cursor: isTimerView && 'default',
                             borderBottom: isTimerView && '2px solid #1a73e8'
                         }}
@@ -69,7 +95,6 @@ function App() {
                     <Grid
                         item="item"
                         className="watchCointainer__headers__stopwatch"
-                        xs={12}
                         sm={6}
                         style={{
                             fontSize: 13,
@@ -80,6 +105,7 @@ function App() {
                                     : '#6b6a6a',
                             fontWeight: 300,
                             padding: 14,
+                            flex:1,
                             cursor: isStopwatchView && 'default',
                             borderBottom: isStopwatchView && '2px solid #1a73e8'
                         }}
@@ -104,10 +130,16 @@ function App() {
                       isTimerView && <Timer />
                     }
                     {
-                      isStopwatchView && <Stopwatch />
+                      isStopwatchView && 
+                       <Stopwatch  
+                          isStopwatchStarted={isStopwatchStarted} 
+                          isStopWatchReset={isStopwatchReset}
+                        />
                     }
                 </Grid>
                 {/* **************************** footer **************************** */}
+              
+                        
                 <Grid
                     className="watchCointainer__footer"
                     container="container"
@@ -117,6 +149,7 @@ function App() {
                             variant="contained"
                             color="primary"
                             size="small"
+                            onClick={()=>handleStartStop()}
                             style={{
                                 background: '#1a73e8',
                                 marginRight: 5,
@@ -124,11 +157,18 @@ function App() {
                                 fontSize: 11,
                                 fontWeight: 'bold',
                                 paddingBottom: 0
-                            }}>start</Button>
+                            }}>
+                                {
+                                    isTimerView?
+                                    isTimerStarted? 'stop':'start'
+                                    :isStopwatchView && isStopwatchStarted? 'stop':'start'
+                                }
+                            </Button>
                         <Button
                             variant="outlined"
                             color="primary"
                             size="small"
+                            onClick={()=>handleReset()}
                             style={{
                                 color: '#1a73e8',
                                 marginLeft: 5,
